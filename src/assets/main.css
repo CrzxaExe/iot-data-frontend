@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  --color-light-100: #f8f8f8;
+
+  --font-inter: "Inter";
+}
