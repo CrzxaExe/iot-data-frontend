@@ -6,16 +6,31 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Home",
-      component: HomeView,
+      component: () => import("../Layout/TopLayout.vue"),
+      children: [
+        {
+          path: "",
+          name: "Home",
+          component: HomeView,
+          children: [],
+        },
+      ],
     },
     {
-      path: "/home-sensor",
-      name: "Home Sensor",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/HomeSensorDashboard.vue"),
+      path: "/dashboard",
+      component: () => import("../Layout/SidebarLayout.vue"),
+      children: [
+        {
+          path: "",
+          name: "Dashboard",
+          component: () => import("../views/DashboardView.vue"),
+        },
+        {
+          path: "home-sensor",
+          name: "Home Sensor",
+          component: () => import("../views/HomeSensorDashboard.vue"),
+        },
+      ],
     },
   ],
 });

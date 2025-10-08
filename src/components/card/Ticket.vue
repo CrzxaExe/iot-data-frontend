@@ -1,5 +1,5 @@
 <template>
-    <RouterLink class="flex items-center aspect-[2.8/1] bg-white  shadow-xl px-3 lg:px-6 py-3 w-full max-w-[18rem] rounded-xl" :class="cls" :to>
+    <RouterLink class="flex items-center lg:aspect-[3.5/1] bg-white lg:max-w-[18rem] shadow-xl px-3 lg:px-6 py-3 w-full rounded-xl" :class="cls" :to>
         <div class="flex flex-col">
             <h1 class="text-xl font-semibold">{{ label }}</h1>
             <p class="font-light text-sm">{{ description }}</p>

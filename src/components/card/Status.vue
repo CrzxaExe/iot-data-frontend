@@ -1,11 +1,11 @@
 <template>
     <Suspense>
         <template #default>
-            <div class="p-2 lg:px-3 aspect-square w-full max-w-[11rem] lg:max-w-[14rem] bg-zinc-700 flex flex-col justify-center items-center relative rounded-2xl text-white">
+            <div class="p-2 lg:px-3 aspect-square w-full max-w-[10rem] lg:max-w-[12rem] bg-zinc-700 flex flex-col justify-center items-center relative rounded-2xl text-white">
                 <h1 class="text-xs lg:text-sm font-medium">{{ model ?? "-Get-" }}</h1>
                 
                 <div class="flex flex-col items-center mt-1 lg:mt-3">
-                    <span class="block text-4xl lg:text-5xl font-semibold">{{ temp ?? 0 }}&deg;C</span>
+                    <span class="block text-3xl lg:text-4xl font-semibold">{{ temp ?? 0 }}&deg;C</span>
                     <span class="-mt-1 text-xs lg:text-sm">Humidity {{ humidity ?? 0 }}%</span>
                 </div>
                 
@@ -17,7 +17,7 @@
                 <h1 class="text-xs lg:text-sm font-medium">-Get-</h1>
                 
                 <div class="flex flex-col items-center mt-1 lg:mt-3">
-                    <span class="block text-4xl lg:text-5xl font-semibold">0&deg;C</span>
+                    <span class="block text-3xl lg:text-4xl font-semibold">0&deg;C</span>
                     <span class="-mt-1 text-xs lg:text-sm">Humidity 0%</span>
                 </div>
                 
