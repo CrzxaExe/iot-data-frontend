@@ -5,3 +5,7 @@
 
   --font-inter: "Inter";
 }
+
+@utility sidebar-style {
+  @apply fixed bg-zinc-600 lg:bg-white min-h-screen z-[100] flex flex-col lg:w-[13rem] transition-all duration-300 ease-in-out text-white lg:text-black px-2 rounded-r-xl;
+}

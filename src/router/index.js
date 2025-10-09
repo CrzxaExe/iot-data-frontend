@@ -30,6 +30,11 @@ const router = createRouter({
           name: "Home Sensor",
           component: () => import("../views/HomeSensorDashboard.vue"),
         },
+        {
+          path: "test",
+          name: "Testing",
+          component: () => import("../views/TestView.vue"),
+        },
       ],
     },
   ],

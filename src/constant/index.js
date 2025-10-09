@@ -1,7 +1,4 @@
-export const navigations = [
-  { label: "Dashboard", to: "/dashboard" },
-  { label: "About", to: "/" },
-];
+export const navigations = [{ label: "Dashboard", to: "/dashboard" }];
 
 export const otherNavigations = [
   {
@@ -15,5 +12,10 @@ export const dashboardNavigation = [
     label: "Dashboard",
     to: "/dashboard",
     icon: new URL("@/assets/icons/Dashboard.svg", import.meta.url).href,
+  },
+  {
+    label: "Testing",
+    to: "/dashboard/test",
+    icon: new URL("@/assets/icons/Code.svg", import.meta.url).href,
   },
 ];
