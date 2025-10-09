@@ -40,7 +40,7 @@
                             <div class="w-1/2 min-h-full max-h-[10rem] flex flex-col items-center justify-center px-3 py-0.5 xl:py-1">
                                 <h1 class="tracking-tighter text-xs lg:text-sm 2xl:text-base">Low</h1>
                                 
-                                <span class="block font-extrabold tracking-tighter text-2xl 2xl:text-4xl mt-1 2xl:mt-4 text-[#00e396]">{{ humLogs.low.data.temperature }}%</span>
+                                <span class="block font-extrabold tracking-tighter text-2xl 2xl:text-4xl mt-1 2xl:mt-4 text-[#00e396]">{{ humLogs.low.data.humidity }}%</span>
                                 <span class="block text-xs lg:text-sm -mt-1">{{ new Date(humLogs.low.timestamp).toLocaleTimeString() }}</span>
                             </div>
 
@@ -49,7 +49,7 @@
                             <div class="w-1/2 min-h-full max-h-[10rem] flex flex-col items-center justify-center px-3 py-0.5 xl:py-1">
                                 <h1 class="tracking-tighter text-xs lg:text-sm 2xl:text-base">High</h1>
                                 
-                                <span class="block font-extrabold tracking-tighter text-2xl 2xl:text-4xl mt-1 2xl:mt-4 text-[#00e396]">{{ humLogs.high.data.temperature }}%</span>
+                                <span class="block font-extrabold tracking-tighter text-2xl 2xl:text-4xl mt-1 2xl:mt-4 text-[#00e396]">{{ humLogs.high.data.humidity }}%</span>
                                 <span class="block text-xs lg:text-sm -mt-1">{{ new Date(humLogs.high.timestamp).toLocaleTimeString() }}</span>
                             </div>
                         </div>
@@ -228,13 +228,13 @@ const fetchLogsAndData = async () => {
         high: structuredClone(res.data).sort((a,b) => b.data.humidity - a.data.humidity)[0],
     }
 
-    dataSeries.value[0].data = [ ...logs.value.map(e => e.data.temperature)];
-    dataSeries.value[1].data = [ ...logs.value.map(e => e.data.humidity)];
+    dataSeries.value[0].data = [ ...logs.value.reverse().map(e => e.data.temperature)];
+    dataSeries.value[1].data = [ ...logs.value.reverse().map(e => e.data.humidity)];
     dataOption.value = {
         ...dataOption.value,
         xaxis: {
             ...dataOption.value.xaxis,
-            categories:  [ ...logs.value.map(e => {
+            categories:  [ ...logs.value.reverse().map(e => {
                 const d = new Date(e.timestamp)
                 return d.getMinutes().toString().padEnd(2, "0") + ":" + d.getSeconds().toString().padEnd(2, "0");
             })]
