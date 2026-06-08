@@ -31,6 +31,11 @@ const router = createRouter({
           component: () => import("../views/HomeSensorDashboard.vue"),
         },
         {
+          path: "feeder-device",
+          name: "Feeder Device",
+          component: () => import("../views/FeederDeviceDashboard.vue"),
+        },
+        {
           path: "test",
           name: "Testing",
           component: () => import("../views/TestView.vue"),

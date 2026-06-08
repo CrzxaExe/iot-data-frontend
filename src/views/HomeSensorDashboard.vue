@@ -106,18 +106,10 @@ const data = ref({
 });
 const models = ref([]);
 const nowModel = ref(models.value[0] ?? "");
-const logs = ref([
+const logs = ref([].fill(
     { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-    { model: '--', data: { temperature: 0, humidity: 0 }, timestamp: new Date().toISOString() },
-]);
+    0, 10
+));
 const tempLogs = ref({
     low: {
         model: '',
