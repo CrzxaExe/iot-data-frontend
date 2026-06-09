@@ -5,12 +5,13 @@
         <div class="w-full flex flex-col lg:flex-row gap-2 lg:gap-4 relative">
             <Data :data="nowModel" desc="Perangkat saat ini" model="Nama Perangkat" />
             <Data :data="models.length" desc="Total perangkat" model="Perangkat" />
-
-            <div class="flex flex-row gap-2 lg:gap-4">
+            <Data :data="['Penuh','Masih','Kosong'][status.status]" :desc="timeString" model="Status Pakan" />
+            
+            <div class="flex flex-row gap-2 lg:gap-4 relative">
                 <Data :data="total" desc="Total aktif hari ini" model="Total" />
                 <Data :data="count" desc="Total aktifasi dari perangkat" model="Aktifasi" />
             </div>
-
+            
             <div class="min-h-full w-full bg-zinc-700 rounded-2xl"></div>
         </div>
 
@@ -48,13 +49,19 @@
 
 <script setup>
 import Data from '@/components/card/Data.vue';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const models = ref([]);
 const nowModel = ref("Tester");
 const data = ref([]);
 const total = ref(0);
 const count = ref(0);
+const status = ref({ status: 0, timestamp: new Date().toISOString()});
+const timeString = computed(() => {
+    const dt = new Date(status.value.timestamp);
+
+    return `${dt.toLocaleTimeString()}-${dt.getDate()}/${dt.getMonth()}/${dt.getFullYear()}`;
+})
 
 const fetchModels = async () => {
     const res = await fetch(import.meta.env.VITE_API + "feeder/get-models/");
@@ -63,12 +70,14 @@ const fetchModels = async () => {
     nowModel.value = models.value[0] || '';
 };
 const fetchData = async () => {
-    const [log, counter] = await Promise.all([
+    const [log, counter, last] = await Promise.all([
         fetch(import.meta.env.VITE_API + "feeder/gets/" + nowModel.value).then(e => e.json()),
         fetch(import.meta.env.VITE_API + "feeder/count/" + nowModel.value).then(e => e.json()),
+        fetch(import.meta.env.VITE_API + "feeder/status/get-latest/" + nowModel.value).then(e => e.json()),
     ]);
 
     data.value = log;
+    status.value = last.data;
 
     total.value = log.data.filter(e => {
         const tgl = new Date(e.data);
